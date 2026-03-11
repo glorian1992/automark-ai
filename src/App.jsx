@@ -102,15 +102,14 @@ Subscription Price: ${activeProfile.price}
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
-          system: contextualSystem,
-          messages: [{ role: "user", content: userMsg }],
-        }),
-      });
+       body: JSON.stringify({
+  messages: [
+    { role: "system", content: contextualSystem },
+    { role: "user", content: userMsg }
+  ],
+});
       const data = await res.json();
-      const raw = data.content?.map(b => b.text || "").join("");
+      const raw = data.choices?.[0]?.message?.content || "";
       let parsed;
       try {
         const clean = raw.replace(/```json|```/g, "").trim();
