@@ -57,7 +57,9 @@ const ACTION_COLORS = {
   log: { bg: "#6366f1", label: "📝 Log" },
   suggest_ad: { bg: "#ec4899", label: "📊 Ad Suggestion" },
   create_content: { bg: "#8b5cf6", label: "✍️ Content Draft" },
-};
+};  
+
+
 
 const PRESET_PROFILES = [
   { id: 1, name: "Luna ✨", niche: "TikTok / OnlyFans", style: "Nerdy-sexy, glasses, smart humor, emojis 😏👓", price: "€9.99/mo" },
