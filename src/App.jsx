@@ -49,11 +49,7 @@ Always respond with valid JSON only (no extra text outside JSON):
   "escalation_note": "optional message for human owner",
   "suggestion": "optional optimization tip"
 }
-</output_format>
-<client_style_example>
-Example for a blonde creator with glasses (nerdy-sexy vibe):
-"Use teasing but smart tone, mention glasses or curves only if relevant, emojis 😏👓💋, focus on 'exclusive behind the scenes' and 'personal chat'."
-</client_style_example>`;
+</output_format>`;
 
 const ACTION_COLORS = {
   send_reply: { bg: "#10b981", label: "📤 DM Reply" },
@@ -102,12 +98,13 @@ Subscription Price: ${activeProfile.price}
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-       body: JSON.stringify({
-  messages: [
-    { role: "system", content: contextualSystem },
-    { role: "user", content: userMsg }
-  ],
-});
+        body: JSON.stringify({
+          messages: [
+            { role: "system", content: contextualSystem },
+            { role: "user", content: userMsg }
+          ],
+        }),
+      });
       const data = await res.json();
       const raw = data.choices?.[0]?.message?.content || "";
       let parsed;
@@ -140,12 +137,10 @@ Subscription Price: ${activeProfile.price}
     }}>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
 
-      {/* Header */}
       <div style={{
         background: "linear-gradient(135deg, #1a0a2e 0%, #0f172a 100%)",
         borderBottom: "1px solid rgba(139,92,246,0.3)",
         padding: "16px 24px", display: "flex", alignItems: "center", justifyContent: "space-between",
-        backdropFilter: "blur(20px)",
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <div style={{
@@ -176,7 +171,6 @@ Subscription Price: ${activeProfile.price}
       </div>
 
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
-        {/* Sidebar */}
         <div style={{
           width: 220, background: "#0f0f1a", borderRight: "1px solid rgba(255,255,255,0.06)",
           padding: "20px 14px", display: "flex", flexDirection: "column", gap: 8,
@@ -193,7 +187,6 @@ Subscription Price: ${activeProfile.price}
               <div style={{ fontSize: 11, color: "#10b981", marginTop: 4, fontWeight: 600 }}>{p.price}</div>
             </button>
           ))}
-
           <div style={{ marginTop: "auto", padding: "12px 8px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
             <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", fontSize: 12, color: "#64748b" }}>
               <input type="checkbox" checked={showThinking} onChange={e => setShowThinking(e.target.checked)}
@@ -203,9 +196,7 @@ Subscription Price: ${activeProfile.price}
           </div>
         </div>
 
-        {/* Chat area */}
         <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-          {/* Active client bar */}
           <div style={{
             padding: "10px 20px", background: "rgba(139,92,246,0.05)",
             borderBottom: "1px solid rgba(139,92,246,0.15)",
@@ -218,7 +209,6 @@ Subscription Price: ${activeProfile.price}
             <span style={{ color: "#64748b", fontSize: 12 }}>{activeProfile.style}</span>
           </div>
 
-          {/* Messages */}
           <div style={{ flex: 1, overflowY: "auto", padding: "20px", display: "flex", flexDirection: "column", gap: 16 }}>
             {messages.length === 0 && (
               <div style={{ textAlign: "center", marginTop: 60 }}>
@@ -254,8 +244,7 @@ Subscription Price: ${activeProfile.price}
                     {showThinking && msg.parsed.thinking && (
                       <div style={{
                         background: "rgba(100,116,139,0.1)", border: "1px solid rgba(100,116,139,0.2)",
-                        borderRadius: 10, padding: "8px 12px", fontSize: 12, color: "#64748b",
-                        fontStyle: "italic",
+                        borderRadius: 10, padding: "8px 12px", fontSize: 12, color: "#64748b", fontStyle: "italic",
                       }}>
                         💭 <strong>Thinking:</strong> {msg.parsed.thinking}
                       </div>
@@ -308,9 +297,7 @@ Subscription Price: ${activeProfile.price}
 
             {loading && (
               <div style={{ display: "flex", alignItems: "center", gap: 10, color: "#64748b", fontSize: 13 }}>
-                <div style={{
-                  display: "flex", gap: 4,
-                }}>
+                <div style={{ display: "flex", gap: 4 }}>
                   {[0, 1, 2].map(i => (
                     <div key={i} style={{
                       width: 6, height: 6, borderRadius: "50%", background: "#8b5cf6",
@@ -324,7 +311,6 @@ Subscription Price: ${activeProfile.price}
             <div ref={bottomRef} />
           </div>
 
-          {/* Input */}
           <div style={{
             padding: "16px 20px", borderTop: "1px solid rgba(255,255,255,0.06)",
             background: "#0a0a0f", display: "flex", gap: 10, alignItems: "flex-end",
